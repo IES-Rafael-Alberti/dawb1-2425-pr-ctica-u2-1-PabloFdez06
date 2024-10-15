@@ -140,11 +140,6 @@ def resetear_saldo(saldo: float, cont_compras: int, cont_ventas: int) -> tuple[f
 
 
 def recuperar_comando_e_importe(linea: str) -> tuple[str, str]:
-
-    if linea == comprobar_comando() or comprobar_importe():
-         return linea
-         
-
     """
     Recupera el comando y, si lo hay, el importe de una línea de entrada.
     
@@ -230,7 +225,7 @@ def main():
              return print(f"Saldo: {saldo},  Compras: {cont_compras}, Ventas: {cont_ventas}")
             
         elif comando == "reset":
-             resetear_saldo()
+             saldo, cont_compras, cont_ventas = resetear_saldo(saldo, cont_compras, cont_ventas)
             
         elif comando == "fin":
              encuentra_fin = True
@@ -240,7 +235,7 @@ def main():
              mostrar_mensaje_error()
             
         else:
-
+            importe = float(importe)
             if comando == "compra":
                  saldo = procesar_compra(saldo, importe)
                  cont_compras += 1
